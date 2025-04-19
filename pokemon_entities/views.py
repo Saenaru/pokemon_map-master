@@ -59,10 +59,8 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    # Получение покемона с id pokemon_id или возврат 404
     pokemon = get_object_or_404(Pokemon, id=pokemon_id)
     
-    # Получение актуальных сущностей покемона
     current_time = timezone.now()
     pokemon_entities = PokemonEntity.objects.filter(
         pokemon=pokemon,
@@ -75,6 +73,8 @@ def show_pokemon(request, pokemon_id):
         'pokemon_id': pokemon.id,
         'img_url': img_url,
         'title_ru': pokemon.title,
+        'title_en': pokemon.title_en,
+        'title_jp': pokemon.title_jp,
         'description': pokemon.description,
     }
 
